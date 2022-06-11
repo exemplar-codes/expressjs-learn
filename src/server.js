@@ -2,7 +2,7 @@ const express = require("express");
 
 const app = express();
 
-// 1. Send raw string as response
+// 1. Send raw string as response to be displayed by browser
 app.get("/", (req, res) => {
   res.send("hello, world");
 });
@@ -64,6 +64,12 @@ app.get("/users/:id/:xy", (req, res) => {
 // req.query object
 app.get("/usersQuery", (req, res) => {
   res.send(req.query);
+});
+
+// 7. Send single file for download, not viewing
+app.get("/image", (req, res) => {
+  const path = require("path");
+  res.download(path.resolve("public/pp.png"));
 });
 
 const port = process.env.PORT || 3000;
