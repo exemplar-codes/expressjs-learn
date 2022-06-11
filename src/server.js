@@ -3,10 +3,9 @@ const express = require("express");
 const app = express();
 
 // 1. Send raw string as response
-// app.get("/", (req, res) => {
-//   res.status(400);
-//   res.end("hello, world");
-// });
+app.get("/", (req, res) => {
+  res.send("hello, world");
+});
 
 // 2. Make static server - just by adding a middleware to static folder
 app.use(express.static("public")); // set up middleware
