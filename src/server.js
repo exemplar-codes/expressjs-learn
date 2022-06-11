@@ -53,5 +53,10 @@ app.post("/form", (req, res) => {
   res.send(output);
 });
 
+// 5. Handle URL params, this is supported by default, just add a proper skeleton URL
+app.get("/users/:id/", (req, res) => {
+  res.send(req.params.id);
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Express running on port ${port}`));
