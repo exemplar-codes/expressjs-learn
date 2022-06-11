@@ -10,6 +10,7 @@ const app = express();
 
 // 2. Make static server - just by adding a middleware to static folder
 app.use(express.static("public")); // set up middleware
+// app.use(express.static('files')) can set up another static file directory, Express will look and respond in order
 
 // 3. Use templating engine to dynamically render Views
 
@@ -54,8 +55,8 @@ app.post("/form", (req, res) => {
 });
 
 // 5. Handle URL params, this is supported by default, just add a proper skeleton URL
-app.get("/users/:id/", (req, res) => {
-  res.send(req.params.id);
+app.get("/users/:id/:xy", (req, res) => {
+  res.json({ id: req.params.id, xy: req.params.xy });
 });
 
 const port = process.env.PORT || 3000;
