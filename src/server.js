@@ -41,6 +41,7 @@ const bodyparser = require("body-parser"); // in built nodejs module
 app.use(bodyparser.urlencoded({ extended: false }));
 
 // 4.3 process form data
+// form data is also sent as request body, so access it using 'req.body'
 app.post("/form", (req, res) => {
   const input_attribute = "str";
   let output;
@@ -55,8 +56,15 @@ app.post("/form", (req, res) => {
 });
 
 // 5. Handle URL params, this is supported by default, just add a proper skeleton URL
+// req.params object
 app.get("/users/:id/:xy", (req, res) => {
   res.json({ id: req.params.id, xy: req.params.xy });
+});
+
+// 6. URL query strings (officially known as urlencoded), is in-built in express
+// req.query object
+app.get("/usersQuery", (req, res) => {
+  res.send(req.query);
 });
 
 const port = process.env.PORT || 3000;
