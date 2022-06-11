@@ -72,5 +72,11 @@ app.get("/image", (req, res) => {
   res.download(path.resolve("public/pp.png"));
 });
 
+// 8. Send file to be displayed by browser
+app.get("/image-display", (req, res) => {
+  const path = require("path");
+  res.sendFile(path.resolve("public/pp.png"));
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Express running on port ${port}`));
