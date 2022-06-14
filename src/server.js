@@ -78,5 +78,34 @@ app.get("/image-display", (req, res) => {
   res.sendFile(path.resolve("public/pp.png"));
 });
 
+// 9. Redirect browser
+app.get("/redirect/:website", (req, res) => {
+  res.redirect(`https://www.${req.params.website}.com`);
+});
+
+// 10. Working with uploaded files
+
+// Use browser's File API to upload file
+app.get("/upload", (req, res) => {
+  res.send(`
+    <form method="POST" action="/upload">
+        <input type="file" name="uploaded_file_here"/>
+        <br /> <br />
+        <input type="submit" />
+    </form>
+  `);
+});
+
+// Access form uploaded file
+app.post("/upload", (req, res) => {
+  console.log(req);
+  res.send(req.body);
+});
+
+// 11. Multi router
+// 12. route separation - route listings
+// 13. Map of routes, OR express-resource https://github.com/visionmedia/express-resource
+// 14. session
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Express running on port ${port}`));
